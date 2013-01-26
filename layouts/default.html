@@ -38,13 +38,19 @@
   {{/ page.image_width }}
   {{# page.player }}
     <meta name="twitter:player" content="{{ . }}">
-  {{/ page.player }}
-  {{# page.player_width }}
+    {{# page.player_width }}
     <meta name="twitter:player:width" content="{{ . }}">
-  {{/ page.player_width }}
-  {{# page.player_height }}
+    {{/ page.player_width }}
+    {{^ page.player_width }}
+    <meta name="twitter:player:width" content="640">
+    {{/ page.player_width }}
+    {{# page.player_height }}
     <meta name="twitter:player:height" content="{{ . }}">
-  {{/ page.player_height }}
+    {{/ page.player_height }}
+    {{^ page.player_height }}
+    <meta name="twitter:player:height" content="360">
+    {{/ page.player_height }}
+  {{/ page.player }}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
