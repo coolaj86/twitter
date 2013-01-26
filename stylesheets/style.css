@@ -61,7 +61,7 @@ html, body {
 }
 .tag_box li {
   line-height:28px;
-  
+  float: left;
 }
 .tag_box.inline li {
   float:left;
