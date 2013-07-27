@@ -3,10 +3,63 @@
   <head>
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
+    <!-- Le Summaries pour Google, Open Graph, and Twitter -->
+    <link rel="icon" type="image/png" href="/assets/media/coolaj86-logo-16x16.png" />
+    <!-- link rel="shortcut icon" href="/assets/media/coolaj86-logo-16x16.ico" /-->
+    <link rel="canonical" href="{{urls.production}}http://blog.coolaj86.com{{ url }}" />
+    <meta property="og:url" content="{{urls.production}}http://blog.coolaj86.com{{ url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ data.title }}" href="/rss.xml" />
+    <link rel="author" href="https://plus.google.com/111222501744950155474" />
+    <link rel="author" href="https://www.facebook.com/coolaj86" />
+    <link rel="author" href="https://twitter.com/coolaj86" />
   {{# page.description }}
     <meta name="description" content="{{ . }}">
+    <meta property="og:description" content="{{ . }}">
   {{/ page.description }}
-    <meta name="author" content="{{ site.author.name }}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta name="author" content="{{ data.author.name }}">
+  {{# page.player }}
+    <!--meta name="twitter:card" content="player"-->
+  {{/ page.player }}
+  {{# data.author.twitter }}
+    <meta name="twitter:site" content="{{ . }}">
+  {{/ data.author.twitter }}
+  {{# data.author.twitter_id }}
+    <meta name="twitter:site:id" content="{{ . }}">
+  {{/ data.author.twitter_id }}
+  {{# page.author.twitter }}
+    <meta name="twitter:creator" content="{{ . }}">
+  {{/ page.author.twitter }}
+  {{# page.author.twitter_id }}
+    <meta name="twitter:creator:id" content="{{ . }}">
+  {{/ page.author.twitter_id }}
+  {{# page.image }}
+    <meta property="og:image" content="http://blog.coolaj86.com{{ . }}">
+  {{/ page.image }}
+  {{^ page.image }}
+    <meta property="og:image" content="http://blog.coolaj86.com/assets/media/coolaj86-logo.png">
+  {{/ page.image }}
+  {{# page.image_height }}
+    <meta property="og:image:height" content="{{ . }}">
+  {{/ page.image_height }}
+  {{^ page.image_height }}
+    <meta property="og:image:height" content="400">
+  {{/ page.image_height }}
+  {{# page.image_width }}
+    <meta property="og:image:width" content="{{ . }}">
+  {{/ page.image_width }}
+  {{^ page.image_width }}
+    <meta property="og:image:width" content="400">
+  {{/ page.image_width }}
+  {{# page.player }}
+    <meta name="twitter:player" content="{{ . }}">
+  {{/ page.player }}
+  {{# page.player_width }}
+    <meta name="twitter:player:width" content="{{ . }}">
+  {{/ page.player_width }}
+  {{# page.player_height }}
+    <meta name="twitter:player:height" content="{{ . }}">
+  {{/ page.player_height }}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
     <!--[if lt IE 9]>
@@ -14,7 +67,11 @@
     <![endif]-->
 
     <!-- Le styles -->
-    {{{ assets }}} 
+    {{# stylesheets.load }}
+      bootstrap.min.css
+      style.css
+      google_prettify/sons-of-obsidian.css
+    {{/ stylesheets.load }}
 
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
@@ -26,15 +83,28 @@
   </head>
 
   <body>
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=213439508797174";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <a class="brand" href="/">{{ site.title }}</a>
+          <a href="/"><img alt="coolaj86 logo" width="32" height="32" src="/assets/media/coolaj86-logo.png"
+            style="margin-top: 4px; float: left; margin-right: 1em;" /></a>
+          <a class="brand" href="{{urls.base_path}}">{{ data.title }}</a>
           <ul class="nav">
-            {{# site.navigation?to_pages }}
+            {{# data.navigation?to__root }}
               {{> pages_list }}
-            {{/ site.navigation?to_pages }}
+            {{/ data.navigation?to__root }}
+            <li>
+              <a href="/rss.xml"><img alt="rss feed" width="16px" src="/assets/media/rss-256x256.png"></a>
+            </li>
           </ul>
         </div>
       </div>
@@ -47,7 +117,33 @@
       </div>
 
       <footer>
-        <p>&copy; {{ site.author.name }} 2012 
+        <p>
+          <!-- http://googlewebmastercentral.blogspot.com/2009/02/specify-your-canonical.html -->
+          <!-- also needs updating at http://plus.google.com/me/about/edit/co -->
+          <a href="mailto:coolaj86@gmail.com" rel="me">coolaj86@gmail.com</a>
+          | 
+          <a href="https://twitter.com/coolaj86?rel=author" rel="me">Twitter</a>
+          |
+          <a href="https://www.facebook.com/coolaj86?rel=author" rel="me">Facebook</a>
+          |
+          <a href="https://github.com/coolaj86?rel=author" rel="me">Github</a>
+          |
+          <a href="https://plus.google.com/111222501744950155474?rel=author" data-user="AJ ONeal" rel="me">Google+</a>
+          <!-- a href="http://plus.google.com/108828336602055066537?rel=author" data-user="coolaj86" rel="me">Google+</a -->
+          |
+          <a href="http://stackoverflow.com/users/151312/coolaj86?rel=author" rel="me">StackOverflow</a>
+          |
+          <a href="https://pinterest.com/coolaj86?rel=author" rel="me">Pinterest</a>
+          |
+          <a href="https://linkedin.com/in/coolaj86?rel=author" rel="me">LinkedIn</a>
+          |
+          <a href="http://okcupid.com/profile/coolaj86?rel=author" rel="me">OkCupid</a>
+          <!-- a href="http://blag.coolaj86.com/?rel=author" rel="me">Blag</a -->
+          <!-- a href="http://about.me/coolaj86/?rel=author" rel="me">about.me</a -->
+          <!-- a href="https://www.gittip.com/niftylettuce/?rel=author" rel="me">GitTip</a -->
+          <!-- a href="https://flattr.com/profile/coolaj86/?rel=author" rel="me">Flattr</a -->
+        </p>
+        <p>&copy; {{ data.author.name }} 2004-2013 
           with help from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
@@ -55,7 +151,27 @@
 
     </div> <!-- /container -->
 
-    {{{ google_prettify }}}
-    {{{ analytics }}}
+    {{{ widgets.google_prettify }}}
+    {{{ widgets.analytics }}}
+
+    <!-- amazon -->
+    <script type="text/javascript" src="http://wms.assoc-amazon.com/20070822/US/js/link-enhancer-common.js?tag=co0dcd-20">
+    </script>
+    <noscript>
+        <img src="http://wms.assoc-amazon.com/20070822/US/img/noscript.gif?tag=co0dcd-20" alt="" />
+    </noscript>
+
+    <!-- g+ -->
+    <!-- Place this tag after the last +1 button tag. -->
+    <script type="text/javascript">
+      (function() {
+        var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+        po.src = 'https://apis.google.com/js/plusone.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+      })();
+    </script>
+
+    <!-- twitter -->
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
   </body>
 </html>
