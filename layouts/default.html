@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <!-- Le Summaries pour Google, Open Graph, and Twitter -->
-    <link rel="icon" type="image/png" href="/assets/media/coolaj86-logo-16x16.png" />
-    <!-- link rel="shortcut icon" href="/assets/media/coolaj86-logo-16x16.ico" /-->
+    <link rel="icon" type="image/png" href="{{ urls.base_path }}/assets/media/coolaj86-logo-16x16.png" />
+    <!-- link rel="shortcut icon" href="{{ urls.base_path }}/assets/media/coolaj86-logo-16x16.ico" /-->
     <link rel="canonical" href="http://{{ data.host }}{{ page.url }}" />
     <meta property="og:url" content="http://{{ data.host }}{{ page.url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ data.title }}" href="/rss.xml" />
@@ -72,6 +72,7 @@
       style.css
       google_prettify/sons-of-obsidian.css
     {{/ stylesheets.load }}
+    {{{ styles }}}
 
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
@@ -95,7 +96,7 @@
     <div class="navbar">
       <div class="navbar-inner">
         <div class="container">
-          <a href="/"><img alt="coolaj86 logo" width="32" height="32" src="/assets/media/coolaj86-logo.png"
+          <a href="/"><img alt="coolaj86 logo" width="32" height="32" src="{{ urls.base_path }}/assets/media/coolaj86-logo.png"
             style="margin-top: 4px; float: left; margin-right: 1em;" /></a>
           <a class="brand" href="{{urls.base_path}}">{{ data.title }}</a>
           <ul class="nav">
@@ -103,7 +104,7 @@
               {{> pages_list }}
             {{/ data.navigation?to__root }}
             <li>
-              <a href="/rss.xml"><img alt="rss feed" width="16px" src="/assets/media/rss-32x32.png"></a>
+              <a href="/rss.xml"><img alt="rss feed" width="16px" src="{{ urls.base_path }}/assets/media/rss-32x32.png"></a>
             </li>
           </ul>
         </div>
@@ -145,8 +146,8 @@
           <!-- a href="https://www.gittip.com/niftylettuce/?rel=author" rel="me">GitTip</a -->
           <!-- a href="https://flattr.com/profile/coolaj86/?rel=author" rel="me">Flattr</a -->
         </p>
-        <p>&copy; {{ data.author.name }} 2004-2013 
-          with help from <a href="http://ruhoh.com" target="_blank" title="The Definitive Technical Blogging Framework">ruhoh</a>
+        <p>&copy; {{ data.author.name }} 2004-2015
+          with help from <a href="http://dear.desi" target="_blank" title="The DIY Blog Platform for Normal People">Desi</a>
           and <a href="http://twitter.github.com/bootstrap/" target="_blank">Twitter Bootstrap</a>
         </p>
       </footer>
